@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  mobile: MyString
+  title: MyString
+  role: MyString
+  assigned: false
+  active: false
+  joined_planit_at: 2015-04-19 22:21:07
+
+two:
+  name: MyString
+  email: MyString
+  mobile: MyString
+  title: MyString
+  role: MyString
+  assigned: false
+  active: false
+  joined_planit_at: 2015-04-19 22:21:07

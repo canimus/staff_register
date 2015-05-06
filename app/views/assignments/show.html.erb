@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @assignment.employee %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @assignment.customer %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @assignment.duration %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @assignment.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @assignment.end_at %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @assignment.status %>
+</p>
+
+<p>
+  <strong>Signed at:</strong>
+  <%= @assignment.signed_at %>
+</p>
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

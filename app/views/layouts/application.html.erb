@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Planit - SR" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <!--  ICON BAR: START -->
+    <div class="icon-bar vertical eight-up left">
+      <a class="item" href="/dashboard/index">
+        <i class="fi-home"></i>
+        <label>Home</label>
+      </a>
+      <a class="item" href="/employees">
+        <i class="fi-torsos-all"></i>        
+        <label>Staff</label>
+      </a>
+      <a class="item" href="/assignments">
+        <i class="fi-checkbox"></i>        
+        <label>Assignments</label>
+      </a>      
+      <a class="item">
+        <i class="fi-dollar"></i>        
+        <label>Finance</label>
+      </a>
+      <a class="item" href="/customers">
+        <i class="fi-address-book"></i>        
+        <label>Customers</label>
+      </a>
+      <a class="item" href="/contacts">
+        <i class="fi-torso-business"></i>        
+        <label>Contacts</label>
+      </a>
+      <a class="item">
+        <i class="fi-flag"></i>        
+        <label>Opportunities</label>
+      </a>
+      <a class="item">
+        <i class="fi-magnifying-glass"></i>        
+        <label>Skills</label>
+      </a>
+    </div>
+    <!-- ICON BAR: END -->
+    <!-- CONTENT AREA: START -->
+    <div class="medium-8 small-offset-1 columns content-area left">
+    <%= yield %>
+    </div>
+    <!-- CONTENT AREA: END -->
+
+
+  </body>
+</html>
