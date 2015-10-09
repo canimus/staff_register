@@ -2,18 +2,10 @@ class Assignment < ActiveRecord::Base
   belongs_to :employee
   belongs_to :customer
 
-
-  # Changing the start date for this
-  # individual assignment
-  def new_start_date new_start_at
-  	self.start_at = new_start_at
-  	calculate_assignment
-  end
-
   # Shift the start of the assignment
   # by the number of days specified
   def delay_by number_of_days
-  	self.start_at = WorkingHours::Duration.new(self.duration, :days).since(self.start_at-1.day)
+  	self.start_at = WorkingHours::Duration.new(self.duration, :days).since(self.start_at-1.day)-number_of_days.days
     save
   end  
 
@@ -26,12 +18,6 @@ class Assignment < ActiveRecord::Base
     dates    
   end
 
-  # Calculates the number of holidays 
-  # in the interim of the assignment
-  def number_of_holidays_in_assignment
-    self.holidays_in_assignment.count
-  end
-
   # Whether duration or end_at should be specified
   # during the creation of an assignment
   def calculate_assignment
@@ -42,5 +28,24 @@ class Assignment < ActiveRecord::Base
   	end
     
   	self.save
+  end
+
+  # Recalculate end of assignment
+  # including leave requests
+  def recalculate_assignment
+
+  end
+
+  # Return the number of days from 
+  # current date to beginning of 
+  # assignment
+  def elapsed_days current_date=DateTime.now
+    (current_date-self.start_at).to_i
+  end
+
+  # Number of days left
+  # from current date
+  def remaining_days
+
   end
 end
