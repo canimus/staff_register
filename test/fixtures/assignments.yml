@@ -3,17 +3,15 @@
 one:
   employee_id: 
   customer_id: 
-  duration: 
-  start_at: 2015-04-19 22:30:43
-  end_at: 2015-04-19 22:30:43
-  status: MyString
-  signed_at: 2015-04-19 22:30:43
+  duration: 10
+  start_at: 2015-01-01 00:00:00 #Thursday
 
-two:
-  employee_id: 
-  customer_id: 
-  duration: 
-  start_at: 2015-04-19 22:30:43
-  end_at: 2015-04-19 22:30:43
-  status: MyString
-  signed_at: 2015-04-19 22:30:43
+delay:
+  start_at: 2015-01-05 00:00:00
+
+with_holiday:
+  start_at: 2015-01-22 00:00:00 # delay 4 to 30/1
+  duration: 4 # delay in days
+
+after_holiday:
+  start_at: 2015-01-29 00:00:00

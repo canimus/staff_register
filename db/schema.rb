@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150514121528) do
     t.string   "role"
     t.boolean  "assigned"
     t.boolean  "active"
-    t.datetime "joined_planit_at"
+    t.datetime "joined_company_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "division"

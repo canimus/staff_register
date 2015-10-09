@@ -8,7 +8,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :role
       t.boolean :assigned
       t.boolean :active
-      t.datetime :joined_planit_at
+      t.datetime :joined_company_at
 
       t.timestamps null: false
     end
