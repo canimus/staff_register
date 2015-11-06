@@ -16,13 +16,6 @@ class AssignmentsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create assignment" do
-    assert_difference('Assignment.count') do
-      post :create, assignment: { customer_id: @assignment.customer_id, duration: @assignment.duration, employee_id: @assignment.employee_id, end_at: @assignment.end_at, signed_at: @assignment.signed_at, start_at: @assignment.start_at, status: @assignment.status }
-    end
-
-    assert_redirected_to assignment_path(assigns(:assignment))
-  end
 
   test "should show assignment" do
     get :show, id: @assignment
@@ -32,11 +25,6 @@ class AssignmentsControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @assignment
     assert_response :success
-  end
-
-  test "should update assignment" do
-    patch :update, id: @assignment, assignment: { customer_id: @assignment.customer_id, duration: @assignment.duration, employee_id: @assignment.employee_id, end_at: @assignment.end_at, signed_at: @assignment.signed_at, start_at: @assignment.start_at, status: @assignment.status }
-    assert_redirected_to assignment_path(assigns(:assignment))
   end
 
   test "should destroy assignment" do

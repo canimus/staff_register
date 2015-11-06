@@ -19,8 +19,6 @@
   <tbody>
     <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= assignment.employee.name %></td>
-        <td><%= assignment.customer.name %></td>
         <td><%= assignment.duration %> days</td>
         <td><%= assignment.start_at %></td>
         <td><%= assignment.end_at %></td>
@@ -28,7 +26,7 @@
         <td><%= assignment.signed_at %></td>
         <td><%= link_to 'Show', assignment %></td>
         <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sur?' } %></td>
       </tr>
     <% end %>
   </tbody>
