@@ -8,8 +8,14 @@ class Assignment < ActiveRecord::Base
   after_validation :plan
 
   # Holidays covered
-  def include_holidays?
+  def holidays?
     holidays.any?
+  end
+
+  # When current date is greater
+  # than end date of assignment
+  def finished?
+    DateTime.now > self.end_at
   end
 
   # Obtain array with holidays included
@@ -23,21 +29,34 @@ class Assignment < ActiveRecord::Base
     else
       raise Exception('End date not defined for assignment')
     end
-
   end
 
-
   # Return the number of days from
-  # current date to beginning of
-  # assignment
+  # current date to start of assignment
+  # > 0 during
+  # < 0 completed
   def elapsed_days(current_date=DateTime.now)
-#    (current_date - self.start_at.to_date) / 1.day
+    if not finished?
+      self.start_at.working_days_until(current_date)
+    else
+      -1
+    end
   end
 
   # Number of days left
   # from current date
-  def remaining_days
-    start_at
+  def remaining_days(current_date=DateTime.now)
+    if not finished?
+      current_date.working_days_until(self.end_at)
+    else
+      -1
+    end
+  end
+
+  # Rrturn the rate per day
+  # times the duration in days of the assignment
+  def revenue
+    rate * duration
   end
 
   private
@@ -46,10 +65,8 @@ class Assignment < ActiveRecord::Base
   # during the creation of an assignmentex
   def plan
     if self.duration.present? # Calculate through duration
-      puts 'with duration'
       self.end_at = self.start_at + self.duration.to_i.working.days
     else # Calculate between start and end dates
-      puts 'with end date'
       self.duration = self.start_at.working_days_until(self.end_at)
     end
   end

@@ -29,3 +29,4 @@ Employee.create(division: 'Technical', name: 'Phil Jonhson', email: 'pjonhson@pl
 # Employee.create(division: 'Functional', name: 'Sarah Coster', email: 'scoster@planit.net.au', mobile: '+61861093800', title: 'TA', role: 'Test Analyst', assigned: false, active: true, joined_company_at: Date.parse('August 12, 2013'))
 # Employee.create(division: 'Functional', name: 'Echo Xia', email: 'exia@planit.net.au', mobile: '+61861093800', title: 'TA', role: 'Test Analyst', assigned: false, active: true, joined_company_at: Date.parse('July 21, 2014'))
 # Employee.create(division: 'Functional', name: 'Baljeet Virk', email: 'bvirk@planit.net.au', mobile: '+61861093800', title: 'TA', role: 'Test Analyst', assigned: false, active: true, joined_company_at: Date.parse('August 8, 2014'))
+Customer.create(name: "HBF", fiscal_name: "HBF Health Limited", abn: "11 126 884 786")

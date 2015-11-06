@@ -27,7 +27,10 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem 'working_hours'
 gem 'chronic'
+gem 'time_diff'
 
+# Time travel capability
+gem 'timecop'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -52,4 +55,3 @@ group :development, :test do
 
 
 end
-
