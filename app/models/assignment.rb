@@ -7,18 +7,17 @@ class Assignment < ActiveRecord::Base
 
   after_validation :plan
 
-  # Holidays covered
+  # True if holidays between assignment?
   def holidays?
     holidays.any?
   end
 
-  # When current date is greater
-  # than end date of assignment
+  # True when end date is in the past
   def finished?
     DateTime.now > self.end_at
   end
 
-  # Obtain array with holidays included
+  # List with included holidays
   def holidays
     if self.end_at.present?
       subset = WorkingHours::Config.holidays.inject([]) { |res, d| res << Range.new(start_at, end_at).cover?(d) }
@@ -33,7 +32,7 @@ class Assignment < ActiveRecord::Base
 
   # Return the number of days from
   # current date to start of assignment
-  # > 0 during
+  # > 0 elapsed days
   # < 0 completed
   def elapsed_days(current_date=DateTime.now)
     if not finished?
@@ -53,16 +52,15 @@ class Assignment < ActiveRecord::Base
     end
   end
 
-  # Rrturn the rate per day
-  # times the duration in days of the assignment
+  # Monetisation from assignment
   def revenue
     rate * duration
   end
 
   private
 
-  # Whether duration or end_at should be specified
-  # during the creation of an assignmentex
+  # calculates end date or duration
+  # of this assignment
   def plan
     if self.duration.present? # Calculate through duration
       self.end_at = self.start_at + self.duration.to_i.working.days
