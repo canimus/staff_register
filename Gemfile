@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
+
+# Time Management
 gem 'working_hours'
 gem 'chronic'
 gem 'time_diff'

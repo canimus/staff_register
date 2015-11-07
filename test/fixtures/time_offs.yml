@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  start_at: 2015-11-07 17:29:13
+feb_4:
+  start_at: 2015-02-04 13:00:00
   duration: 1
-  motive: MyString
-
-two:
-  start_at: 2015-11-07 17:29:13
-  duration: 1
-  motive: MyString
+  motive: Sick Leave
+  employee_id: 1

@@ -4,4 +4,13 @@ class Employee < ActiveRecord::Base
 
 	scope :technical, -> { where(division: "Technical") }
 	scope :functional, -> { where(division: "Functional") }
+
+	def leave?
+		self.time_offs.count > 0
+	end
+
+	def leave(time_frame=Range.new(Chronic.parse('1/1', context: :past), Chronic.parse('12/31')))
+		self.time_offs.where start_at:time_frame
+	end
+
 end

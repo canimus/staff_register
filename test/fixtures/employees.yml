@@ -1,21 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  mobile: MyString
-  title: MyString
-  role: MyString
+john:
+  id: 1
+  name: John Smith
+  email: j.smith@test.com
+  mobile: +61.444.555.666
+  title: Test Consultant
+  role: TC
   assigned: false
-  active: false
-  joined_company_at: 2015-04-19 22:21:07
-
-two:
-  name: MyString
-  email: MyString
-  mobile: MyString
-  title: MyString
-  role: MyString
-  assigned: false
-  active: false
-  joined_company_at: 2015-04-19 22:21:07
+  active: true
+  division: Technical
+  joined_company_at: 2010-01-01 09:00:00

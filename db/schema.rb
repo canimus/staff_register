@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107092913) do
+ActiveRecord::Schema.define(version: 20151107104402) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20151107092913) do
     t.integer  "employee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "end_at"
   end
 
   add_index "time_offs", ["employee_id"], name: "index_time_offs_on_employee_id"

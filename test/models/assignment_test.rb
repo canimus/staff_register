@@ -51,6 +51,11 @@ class AssignmentTest < ActiveSupport::TestCase
   end
 
   test 'should calculate time off for remaining days' do
+    e = employees(:john)
+    t = time_offs(:feb_4)
+    a = assignments(:finished)
+    a.employee = e
     
+    assert true
   end
 end
