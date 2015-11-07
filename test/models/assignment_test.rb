@@ -49,4 +49,8 @@ class AssignmentTest < ActiveSupport::TestCase
     e = assert_raises(Exception) { a.save }
     assert_includes e.message, 'is not a working day'
   end
+
+  test 'should calculate time off for remaining days' do
+    
+  end
 end
