@@ -2,45 +2,51 @@ require 'test_helper'
 
 class AssignmentTest < ActiveSupport::TestCase
 
-	# Testing all attributes
-  test 'respond to attributes' do
-    attributes = %w[duration start_at end_at employee customer status signed_at]
-    o = Assignment.new
-    attributes.each do |a|
-    	assert o.respond_to? a.to_sym
-    end
-  end
-
-  # Testing all methods
-  test 'respond to methods' do
-    methods = %w[holidays holidays? elapsed_days remaining_days]
-    o = Assignment.new
-    methods.each do |a|
-      assert o.respond_to?(a.to_sym), "Method not defined #{a}"
-    end
-  end
-
   # Change start date with working days and holidays
-  test 'verify with holidays' do
+  test 'should have holidays' do
     a = assignments(:with_holiday)
     assert a.holidays?, "Does not recognise holidays"
   end
 
   # Get remaining days
-  test 'get remaining days' do
-    a = assignments(:normal_week)
-    new_time = Time.local(2015, 1, 2, 9, 0, 0)
-    Timecop.freeze(new_time) do
-      assert_equal a.remaining_days, 0, "Wrong calculation of remaining days"
+  test 'should be finished' do
+    a = assignments(:finished)
+    assert a.finished?, "Does not recognise finished project"
+  end
+
+  test 'should count elapsed days' do
+    a = assignments(:finished)
+    set_time = Chronic.parse("2 days from now", now: a.start_at)
+
+    Timecop.freeze(set_time) do
+      assert_equal a.elapsed_days, 2, "Incorrect elapsed days"
+      assert_equal a.remaining_days, 2, "Incorrect remaining days"
     end
   end
 
-  test 'long engagement' do
-    a = assignments(:mahabalesh)
-    new_time = Time.local(2015, 11, 6, 21, 0, 0)
-    Timecop.freeze(new_time) do
-      assert_equal a.start_at.working_days_until(DateTime.now), 58, "Incorrect working days for long assignment"
+  test 'should have negative elapsed days' do
+    a = assignments(:finished)
+    set_time = Chronic.parse("7 days from now", now: a.end_at)
+
+    Timecop.freeze(set_time) do
+      assert_equal a.elapsed_days, -5
+      assert_equal a.remaining_days, 0
     end
   end
 
+  test 'should have negative for upcoming' do
+    a = assignments(:finished)
+    set_time = Chronic.parse("7 days before now", now: a.start_at)
+
+    Timecop.freeze(set_time) do
+      assert_equal a.remaining_days, -5
+      assert_nil a.elapsed_days
+    end
+  end
+
+  test 'should raise an exception with start on weekend' do
+    a = Assignment.new start_at:Chronic.parse('next Saturday'), duration: 1
+    e = assert_raises(Exception) { a.save }
+    assert_includes e.message, 'is not a working day'
+  end
 end

@@ -9,12 +9,17 @@ class Assignment < ActiveRecord::Base
 
   # Monetisation from assignment
   def revenue
-    rate * duration
+    rate * duration if (rate.present? and duration.present?)
   end
 
   # True if holidays between assignment?
   def holidays?
     holidays.any?
+  end
+
+  # True when current date is between start and end date
+  def started?
+    engagement_time_frame.member?(DateTime.now.to_date)
   end
 
   # True when end date is in the past
@@ -23,38 +28,30 @@ class Assignment < ActiveRecord::Base
   end
 
   # List with included holidays
-  # @return [Array]
   def holidays
-    if self.end_at.present?
-      subset = WorkingHours::Config.holidays.inject([]) { |res, d| res << Range.new(start_at, end_at).cover?(d) }
-      positions = subset.each_index.select{|i| subset[i].eql?(true)}
-      dates = []
-      positions.each {|p| dates << WorkingHours::Config.holidays.fetch(p) }
-      dates
-    else
-      raise Exception('End date not defined for assignment')
-    end
+    WorkingHours::Config.holidays.select {|d| engagement_time_frame.member?(d) } if self.end_at.present?
   end
 
-  # Return the number of days from
-  # current date to start of assignment
-  # > 0 elapsed days
-  # < 0 completed
+  # Number of days from start of engagement
+  # Negative number when assignment finished
   def elapsed_days(current_date=DateTime.now)
-    if not finished?
+    if started?
       self.start_at.working_days_until(current_date)
-    else
-      -1
+    elsif finished?
+      self.end_at.working_days_until(current_date).to_i*-1
     end
   end
 
-  # Number of days left
-  # from current date
+  # Number of days to finish engagement
+  # Negative number for countdown to start
+  # Zero when assignment is completed
   def remaining_days(current_date=DateTime.now)
-    if not finished?
+    if started?
       current_date.working_days_until(self.end_at)
+    elsif finished?
+      0
     else
-      -1
+      current_date.working_days_until(self.start_at).to_i*-1
     end
   end
 
@@ -64,6 +61,8 @@ class Assignment < ActiveRecord::Base
   # calculates end date or duration
   # of this assignment
   def plan
+    raise Exception, "Assignment start date is not a working day" unless self.start_at.working_day?
+
     if self.duration.present? # Calculate through duration
       self.end_at = self.start_at + self.duration.to_i.working.days
     else # Calculate between start and end dates
@@ -71,4 +70,11 @@ class Assignment < ActiveRecord::Base
     end
   end
 
+  def engagement_time_frame
+    Range.new(self.start_at.to_date, self.end_at.to_date)
+  end
+
+  def unplanned_time_off
+    self.employee.time_offs
+  end
 end

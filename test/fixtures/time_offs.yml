@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_at: 2015-11-07 17:29:13
+  duration: 1
+  motive: MyString
+
+two:
+  start_at: 2015-11-07 17:29:13
+  duration: 1
+  motive: MyString
