@@ -7,6 +7,11 @@ class Assignment < ActiveRecord::Base
 
   after_validation :plan
 
+  # Monetisation from assignment
+  def revenue
+    rate * duration
+  end
+
   # True if holidays between assignment?
   def holidays?
     holidays.any?
@@ -18,6 +23,7 @@ class Assignment < ActiveRecord::Base
   end
 
   # List with included holidays
+  # @return [Array]
   def holidays
     if self.end_at.present?
       subset = WorkingHours::Config.holidays.inject([]) { |res, d| res << Range.new(start_at, end_at).cover?(d) }
@@ -52,10 +58,6 @@ class Assignment < ActiveRecord::Base
     end
   end
 
-  # Monetisation from assignment
-  def revenue
-    rate * duration
-  end
 
   private
 

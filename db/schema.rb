@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514121528) do
+ActiveRecord::Schema.define(version: 20151107000843) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -20,9 +20,12 @@ ActiveRecord::Schema.define(version: 20150514121528) do
     t.string   "state"
     t.string   "country"
     t.string   "used_for"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
+
+  add_index "addresses", ["customer_id"], name: "index_addresses_on_customer_id"
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "employee_id"
@@ -46,9 +49,12 @@ ActiveRecord::Schema.define(version: 20150514121528) do
     t.string   "email"
     t.string   "mobile"
     t.string   "company"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
+
+  add_index "contacts", ["customer_id"], name: "index_contacts_on_customer_id"
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
