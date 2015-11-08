@@ -30,6 +30,8 @@ gem 'working_hours'
 gem 'chronic'
 gem 'time_diff'
 
+gem 'haml'
+
 # Time travel capability
 gem 'timecop'
 # Use ActiveModel has_secure_password

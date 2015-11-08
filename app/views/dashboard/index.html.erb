@@ -1,1 +1,56 @@
-<span>Visualisation</span>
+<!-- Start of first page -->
+<div data-role="page" id="home">
+  <div data-role="panel" data-position="left" data-display="push" data-theme="b" id="actions">
+    <ul data-role="listview" data-child-pages="true">
+      <li data-role="list-divider" data-theme="b">
+        <h1>Actions</h1>
+      </li>
+			<li><a href="#acura">Customers</a></li>
+      <li><a href="#acura">Employees</a></li>
+      <li><a href="#acura">Assignments</a></li>
+      <li><a href="#acura">Utilisation</a></li>
+      <li><a href="#acura">Reports</a></li>
+    </ul>
+  </div>
+  <div data-role="header" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" class="ui-btn-active ui-state-persist">On-Site</a></li>
+        <li><a href="#onsite">Bench</a></li></ul>
+    </div>
+  </div>
+	<div role="main" class="ui-content">
+    <ul data-role="listview" data-inset="false">
+      <% @employees.each do |employee| %>
+        <li class="nomarigin"><a href="index.html"><%= employee.name %></a></li>
+      <% end %>
+    </ul>
+	</div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#actions" data-icon="bullets">Menu</a></li>
+        <li><a href="#home" data-icon="home">Home</a></li>
+        <li><a href="#actions" data-icon="gear">Setup</a></li>
+      </ul>
+    </div>
+</div><!-- /footer -->
+
+</div><!-- /page -->
+<div data-role="page" id="onsite">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="#home">On-Site</a></li>
+      <li><a href="#" class="ui-btn-active ui-state-persist">Bench</a></li>
+    </ul>
+  </div>
+
+	<div role="main" class="ui-content">
+    <ul data-role="listview" data-inset="false">
+      <li class="nomarigin"><a href="index.html">Patrick Caceres</a></li>
+      <li class="nomarigin"><a href="index.html">Jovert Saulon</a></li>
+    </ul>
+	</div><!-- /content -->
+
+</div><!-- /page -->
