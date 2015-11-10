@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 \.DS_Store
+db/seed_data.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
