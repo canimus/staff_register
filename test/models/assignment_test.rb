@@ -50,12 +50,23 @@ class AssignmentTest < ActiveSupport::TestCase
     assert_includes e.message, 'is not a working day'
   end
 
+  # TODO: Calculate time off in assignment
   test 'should calculate time off for remaining days' do
     e = employees(:john)
     t = time_offs(:feb_4)
     a = assignments(:finished)
     a.employee = e
-    
+
     assert true
+  end
+
+  test 'should return duration in natural days' do
+    a = assignments(:natural_days)
+    assert_equal a.duration_in_natural_days, 7, "Duration does not include weekends"
+  end
+
+  test 'should return duration in natural days in words' do
+    a = assignments(:natural_days)
+    assert_equal a.duration_in_natural_days(true), "7 days", "Duration does not include weekends"
   end
 end

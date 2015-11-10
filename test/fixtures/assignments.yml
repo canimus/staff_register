@@ -8,3 +8,8 @@ finished: # No holidays
   start_at: 2015-02-02 09:00:00
   end_at: 2015-02-06 17:00:00
   duration: 5
+
+natural_days:
+  start_at: 2015-11-09 09:00:00
+  end_at: 2015-11-16 09:00:00
+  duration: 5

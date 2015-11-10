@@ -57,6 +57,15 @@ class Assignment < ActiveRecord::Base
     end
   end
 
+  # Return the natural days duration
+  # of the engagement. Includes weekends
+  def duration_in_natural_days(in_words=false)
+    unless in_words
+      (self.end_at.to_date - self.start_at.to_date).to_i
+    else
+      Time.diff(self.end_at.to_date, self.start_at.to_date, "%d")[:diff]
+    end
+  end
 
   private
 
