@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107104402) do
+ActiveRecord::Schema.define(version: 20151111083152) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -35,10 +35,11 @@ ActiveRecord::Schema.define(version: 20151107104402) do
     t.datetime "end_at"
     t.string   "status"
     t.datetime "signed_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.float    "rate"
     t.string   "postponed"
+    t.text     "weekend_days"
   end
 
   add_index "assignments", ["customer_id"], name: "index_assignments_on_customer_id"

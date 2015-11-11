@@ -9,6 +9,9 @@ class Assignment < ActiveRecord::Base
 
   after_validation :plan
 
+  # Serialise weekend date strings
+  serialize :weekend_days
+
   # Monetisation from assignment
   def revenue
     rate * duration if (rate.present? and duration.present?)
