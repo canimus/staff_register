@@ -4,6 +4,7 @@ module Planneable
   # calculates end date or duration
   # of this assignment
   def plan
+    # FIX: This needs refactoring to allow projects with weekend work schedules
     raise Exception, "Start date is not a working day" unless self.start_at.working_day?
 
     if self.duration.present? # Calculate through duration
