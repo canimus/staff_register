@@ -1,0 +1,54 @@
+#home{"data-role" => "page"}
+  #actions{"data-display" => "push", "data-position" => "left", "data-role" => "panel", "data-theme" => "b"}
+    %ul{"data-child-pages" => "true", "data-role" => "listview"}
+      %li{"data-role" => "list-divider", "data-theme" => "b"}
+        %h1 Actions
+      %li
+        %a{:href => "#acura"} Customers
+      %li
+        %a{:href => "#acura"} Employees
+      %li
+        %a{:href => "#acura"} Assignments
+      %li
+        %a{:href => "#acura"} Utilisation
+      %li
+        %a{:href => "#acura"} Reports
+  %div{"data-position" => "fixed", "data-role" => "header"}
+    %div{"data-role" => "navbar"}
+      %ul
+        %li
+          %a.ui-btn-active.ui-state-persist{:href => "#"} On-Site
+        %li
+          %a{:href => "#onsite"} Bench
+  .ui-content{:role => "main"}
+    %ul{"data-inset" => "false", "data-role" => "listview"}
+      - @employees.each do |employee|
+        %li.nomarigin
+          %a{:href => "index.html"}= employee.name
+  / /content
+  %div{"data-position" => "fixed", "data-role" => "footer"}
+    %div{"data-role" => "navbar"}
+      %ul
+        %li
+          %a{"data-icon" => "bullets", :href => "#actions"} Menu
+        %li
+          %a{"data-icon" => "home", :href => "#home"} Home
+        %li
+          %a{"data-icon" => "gear", :href => "#actions"} Setup
+  / /footer
+/ /page
+#onsite{"data-role" => "page"}
+  %div{"data-role" => "navbar"}
+    %ul
+      %li
+        %a{:href => "#home"} On-Site
+      %li
+        %a.ui-btn-active.ui-state-persist{:href => "#"} Bench
+  .ui-content{:role => "main"}
+    %ul{"data-inset" => "false", "data-role" => "listview"}
+      %li.nomarigin
+        %a{:href => "index.html"} Patrick Caceres
+      %li.nomarigin
+        %a{:href => "index.html"} Jovert Saulon
+  / /content
+/ /page
