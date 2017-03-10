@@ -30,6 +30,7 @@ gem 'working_hours'
 gem 'chronic'
 gem 'time_diff'
 
+# Template system
 gem 'haml'
 
 # Time travel capability
