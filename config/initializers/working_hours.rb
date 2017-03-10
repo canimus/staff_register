@@ -6,10 +6,10 @@ WorkingHours::Config.working_hours = {
 	fri: {'09:00' => '12:00', '13:00' => '17:00'}
 }
 
-WorkingHours::Config.time_zone = 'Perth'
+WorkingHours::Config.time_zone = 'Amsterdam'
 
 WorkingHours::Config.holidays = [
-	Date.parse('January 1, 2015'),     # New Year's Day 
+	Date.parse('January 1, 2015'),     # New Year's Day
 	Date.parse('January 26, 2015'),    # Australia Day
 	Date.parse('March 2, 2015'),       # Labour Day
 	Date.parse('April 3, 2015'),       # Good Friday
@@ -17,7 +17,7 @@ WorkingHours::Config.holidays = [
 	Date.parse('April 25, 2015'),      # ANZAC Day
 	Date.parse('April 27, 2015'),      # ANZAC Day
 	Date.parse('June 1, 2015'),        # Western Australia Day
-	Date.parse('September 28, 2015'),  # Queen's Birthday 
+	Date.parse('September 28, 2015'),  # Queen's Birthday
 	Date.parse('December 25, 2015'),    # Christmas Day
 	Date.parse('December 26, 2015'),    # Boxing Day
 	Date.parse('December 28, 2015')    # Boxing Day
